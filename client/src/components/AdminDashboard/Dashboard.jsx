@@ -9,12 +9,12 @@ import Navbar from "./Navbar";
 
 
 function Dashboard() {
-  const [boxes, setBoxes] = useState([]);
+  const [blogs, setblogs] = useState([]);
 
   const fetchData = () => {
     axios
-      .get(`${import.meta.env.VITE_REACT_API_URL}/boxes`)
-      .then((response) => setBoxes(response.data))
+      .get(`${import.meta.env.VITE_REACT_API_URL}/blogs`)
+      .then((response) => setblogs(response.data))
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
@@ -31,14 +31,14 @@ function Dashboard() {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteBox(slug);
+        deleteblog(slug);
       }
     });
   };
 
-  const deleteBox = (slug) => {
+  const deleteblog = (slug) => {
     axios
-      .delete(`${import.meta.env.VITE_REACT_API_URL}/box/${slug}`, {
+      .delete(`${import.meta.env.VITE_REACT_API_URL}/blog/${slug}`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
@@ -78,33 +78,33 @@ function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {boxes.map((box) => (
+            {blogs.map((blog) => (
               <tr
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                key={box._id}
+                key={blog._id}
               >
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  <img src={box.image} alt="" className=" w-16 lg:h-16" />
+                  <img src={blog.image} alt="" className=" w-16 lg:h-16" />
                 </th>
-                <td className="px-6 py-4">{box.slug}</td>
+                <td className="px-6 py-4">{blog.slug}</td>
                 <td className="px-6 py-4 hidden lg:table-cell">
-                  <p>at {new Date(box.createdAt).toLocaleString()}</p>
+                  <p>at {new Date(blog.createdAt).toLocaleString()}</p>
                 </td>
-                <td className="px-6 py-4 hidden lg:table-cell">{box.author}</td>
+                <td className="px-6 py-4 hidden lg:table-cell">{blog.author}</td>
                 <td className="px-6 py-4">
                   {getUser() && (
                     <div className=" flex">
                       <button
                         className="text-m p-2 border-solid border-2 border-gray-100 rounded"
-                        onClick={() => confirm(box.slug)}
+                        onClick={() => confirm(blog.slug)}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
-                          viewBox="0 0 24 24"
+                          viewblog="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="currentColor"
                           className="w-6 h-6"
@@ -118,12 +118,12 @@ function Dashboard() {
                       </button>
                       <Link
                         className="text-m p-2 border-solid border-2 border-gray-100 rounded"
-                        to={`/box/edit/${box.slug}`}
+                        to={`/blog/edit/${blog.slug}`}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
-                          viewBox="0 0 24 24"
+                          viewblog="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="currentColor"
                           className="w-6 h-6"

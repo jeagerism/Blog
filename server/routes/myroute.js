@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getAllBoxes,
+  getAllblogs,
   create,
   singleBlog,
   remove,
@@ -11,10 +11,10 @@ const { requireLogin } = require("../controllers/authController");
 
 router.post("/create", requireLogin, create);
 
-router.get("/boxes", getAllBoxes);
+router.get("/blogs", getAllblogs);
 
-router.get("/box/:slug", singleBlog);
-router.delete("/box/:slug", requireLogin, remove);
-router.put("/box/edit/:slug", requireLogin, updatePost);
+router.get("/blog/:slug", singleBlog);
+router.delete("/blog/:slug", requireLogin, remove);
+router.put("/blog/edit/:slug", requireLogin, updatePost);
 
 module.exports = router;

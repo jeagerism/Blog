@@ -12,9 +12,9 @@ const MyRoute = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/box/:slug" element={<SinglePage />} />
+        <Route path="/blog/:slug" element={<SinglePage />} />
         <Route path="/create" element={<Form />} />
-            <Route path="/box/edit/:slug" element={<Edit />} />
+        <Route path="/blog/edit/:slug" element={<Edit />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>

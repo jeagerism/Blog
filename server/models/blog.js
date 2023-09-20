@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const boxSchema = mongoose.Schema(
+const blogSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -25,4 +25,4 @@ const boxSchema = mongoose.Schema(
   },
   { timestamp: true }
 );
-module.exports = mongoose.model("Boxes", boxSchema);
+module.exports = mongoose.model("blogs", blogSchema);

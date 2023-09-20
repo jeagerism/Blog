@@ -11,7 +11,7 @@ const SinglePage = () => {
   //เมื่อมีการเปลี่ยนแปลง
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_REACT_API_URL}/box/${slug}`)
+      .get(`${import.meta.env.VITE_REACT_API_URL}/blog/${slug}`)
       .then((response) => {
         setState(response.data);
       })

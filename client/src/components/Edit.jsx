@@ -42,7 +42,7 @@ const Edit = () => {
   const { slug } = useParams();
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_REACT_API_URL}/box/${slug}`)
+      .get(`${import.meta.env.VITE_REACT_API_URL}/blog/${slug}`)
       .then((response) => {
         const { title, content, author, slug } = response.data;
         setFormData({ ...formData, title, content, author, slug });
@@ -56,7 +56,7 @@ const Edit = () => {
 
     axios
       .put(
-        `${import.meta.env.VITE_REACT_API_URL}/box/edit/${slug}`,
+        `${import.meta.env.VITE_REACT_API_URL}/blog/edit/${slug}`,
         {
           title,
           content,

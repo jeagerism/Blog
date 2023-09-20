@@ -1,5 +1,5 @@
 const slugify = require("slugify");
-const Boxes = require("../models/box");
+const blogs = require("../models/blog");
 const { v4: uuidv4 } = require("uuid");
 
 exports.create = (req, res) => {
@@ -18,13 +18,13 @@ exports.create = (req, res) => {
     return res.status(400).json({ error: "image!" });
   }
 
-  Boxes.create({ title, content, author, image, slug })
+  blogs.create({ title, content, author, image, slug })
     .then((blog) => res.json(blog))
     .catch((error) => res.status(400).json({ error: "ERROR!" }));
 };
 
-exports.getAllBoxes = (req, res) => {
-  Boxes.find({})
+exports.getAllblogs = (req, res) => {
+  blogs.find({})
     .exec()
     .then((blogs) => res.json(blogs))
     .catch((err) => {
@@ -34,25 +34,25 @@ exports.getAllBoxes = (req, res) => {
 
 exports.singleBlog = (req, res) => {
   const { slug } = req.params;
-  Boxes.findOne({ slug })
+  blogs.findOne({ slug })
     .exec()
-    .then((this_box) => {
-      if (!this_box) {
-        return res.status(404).json({ error: "Box not found" });
+    .then((this_blog) => {
+      if (!this_blog) {
+        return res.status(404).json({ error: "blog not found" });
       }
-      res.json(this_box);
+      res.json(this_blog);
     })
     .catch((err) => {
-      res.status(500).json({ error: "Error fetching this box" });
+      res.status(500).json({ error: "Error fetching this blog" });
     });
 };
 
 exports.remove = (req, res) => {
   const { slug } = req.params;
-  Boxes.findOneAndDelete({ slug })
+  blogs.findOneAndDelete({ slug })
     .exec()
-    .then((box) => {
-      if (!box) {
+    .then((blog) => {
+      if (!blog) {
         return res.status(400).json({ error: "not found!" });
       }
       res.json({
@@ -68,7 +68,7 @@ exports.updatePost = (req, res) => {
   const { slug } = req.params;
   const { title, content, author, image } = req.body;
 
-  Boxes.findOneAndUpdate(
+  blogs.findOneAndUpdate(
     { slug },
     { title, content, author, image },
     { new: true }

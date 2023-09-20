@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const boxRoute = require("./routes/myroute");
+const blogRoute = require("./routes/myroute");
 const authRoute = require("./routes/auth");
 const { login } = require("./controllers/authController");
 const app = express();
@@ -24,7 +24,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 //route
-app.use("/api", boxRoute);
+app.use("/api", blogRoute);
 app.use("/api", authRoute);
 app.use("/api", login);
 //start server
